@@ -2,23 +2,27 @@ import floralImage from '../pages/assets/images/floral-collection.jpg.jpeg';
 import cuteImage from '../pages/assets/images/cute-collection.jpg.jpeg';
 import giftImage from '../pages/assets/images/gift-collection.jpg.jpeg';
 
+// focus: which part of a photo to keep when the card frame trims it (CSS object-position).
 export const collections = [
   {
     name: 'little blooms',
-    description: 'delicate flowers, thoughtfully made.',
+    description: 'Peony and rose candles with every petal sculpted in wax.',
     image: floralImage,
-    alt: 'Pastel flower-shaped candles arranged together',
+    focus: '50% 45%',
+    alt: 'Four peony-shaped candles in peach, pink, cream and lilac on a white tray',
   },
   {
     name: 'little friends',
-    description: 'tiny companions, full of love.',
+    description: 'Bunnies and teddies holding a tiny red heart.',
     image: cuteImage,
-    alt: 'Cute bunny and teddy bear candles',
+    focus: '50% 50%',
+    alt: 'Bunny and teddy bear candles, each holding a small red heart',
   },
   {
     name: 'little moments',
-    description: 'something lovely for someone special.',
+    description: 'Gift-ready boxes for someone special.',
     image: giftImage,
-    alt: 'Pink rose teddy bear and flower candles arranged as a gift',
+    focus: '50% 58%',
+    alt: 'Gift box of pink roses and peonies with two lit candles',
   },
 ] as const;

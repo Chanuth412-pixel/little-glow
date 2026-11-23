@@ -1,18 +1,8 @@
 ---
-import { site, whatsappLink } from '../data/site';
-const whatsapp = whatsappLink('Hello Little Glow!');
+import { site } from '../data/site';
 ---
 
-<footer class="site-footer">
-  <div>
-    <div class="footer-brand">{site.name} ♡</div>
-    <p class="footer-note">handmade with love</p>
-  </div>
-  <div class="footer-right">
-    <div class="footer-links">
-      {site.instagramUrl && <a href={site.instagramUrl} target="_blank" rel="noreferrer">Instagram</a>}
-      {whatsapp && <a href={whatsapp} target="_blank" rel="noreferrer">WhatsApp</a>}
-    </div>
-    <p class="copyright">© {new Date().getFullYear()} little glow.</p>
-  </div>
+<footer class="site-footer page">
+  <a class="wordmark" href="/">{site.name}</a>
+  <p>hand-poured with love · © {new Date().getFullYear()} little glow.</p>
 </footer>

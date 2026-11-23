@@ -1,16 +1,30 @@
 ---
 import { Image } from 'astro:assets';
-import roseImage from '../pages/assets/images/hero-rose.jpg.jpg';
-import teddyImage from '../pages/assets/images/hero-teddy.jpg.jpeg';
+import litRose from '../pages/assets/images/hero-teddy.jpg.jpeg';
+import { site, whatsappLink } from '../data/site';
+const order = whatsappLink('Hello little glow, I would like to order a candle.');
 ---
 
-<section class="hero" aria-labelledby="hero-title">
-  <p class="eyebrow">hand-poured, with heart</p>
-  <h1 id="hero-title"><span>a little science,</span><span><em>a lot of love.</em></span></h1>
-  <p class="hero-copy">Hand-poured candles, thoughtfully made for life's little moments.</p>
-  <div class="hero-images">
-    <div class="image-frame hero-rose"><Image src={roseImage} alt="Pink rose-shaped candle on a marble tray" loading="eager" /></div>
-    <div class="image-frame hero-teddy"><Image src={teddyImage} alt="Pale pink teddy bear candle holding a heart" /></div>
+<section class="hero page" aria-labelledby="hero-title">
+  <div>
+    <p class="eyebrow">hand-poured, with heart</p>
+    <h1 id="hero-title"><span>a little science,</span><span><em>a lot of love.</em></span></h1>
+    <p class="hero-copy">{site.description}</p>
+    <div class="hero-actions">
+      {order && <a class="button" href={order} target="_blank" rel="noreferrer">Order on WhatsApp</a>}
+      <a class:list={['button', order && 'button-quiet']} href="#candles">See the candles</a>
+    </div>
   </div>
-  <a class="text-link hero-cta" href="#collection">discover something lovely <span class="arrow" aria-hidden="true">→</span></a>
+  <div class="hero-photo">
+    <div class="hero-photo-frame">
+      <Image
+        src={litRose}
+        alt="A pale pink rose candle, lit, glowing from the centre of its petals"
+        widths={[480, 720, 960, 1200]}
+        sizes="(max-width: 860px) 100vw, 50vw"
+        loading="eager"
+        fetchpriority="high"
+      />
+    </div>
+  </div>
 </section>

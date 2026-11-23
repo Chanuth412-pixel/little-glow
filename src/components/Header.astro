@@ -1,8 +1,14 @@
-<header class="site-header">
-  <a class="brand" href="/" aria-label="Little Glow home">little glow.</a>
-  <nav class="nav" aria-label="Main navigation">
-    <a href="#collection">collection</a>
+---
+import { site, whatsappLink } from '../data/site';
+const order = whatsappLink('Hello little glow, I would like to order a candle.');
+---
+
+<header class="site-header page">
+  <a class="wordmark" href="/" aria-label="little glow home">{site.name}</a>
+  <nav class="nav" aria-label="Main">
+    <a href="#candles">candles</a>
+    <a href="#order">how to order</a>
     <a href="#story">our story</a>
-    <a href="#contact">contact</a>
   </nav>
+  {order && <a class="button header-order" href={order} target="_blank" rel="noreferrer">order</a>}
 </header>

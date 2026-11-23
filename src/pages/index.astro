@@ -2,46 +2,44 @@
 import Header from '../components/Header.astro';
 import Hero from '../components/Hero.astro';
 import Collection from '../components/Collection.astro';
+import HowToOrder from '../components/HowToOrder.astro';
 import OurStory from '../components/OurStory.astro';
 import Contact from '../components/Contact.astro';
 import Footer from '../components/Footer.astro';
 import { site } from '../data/site';
+import '@fontsource/cormorant-garamond/300.css';
+import '@fontsource/cormorant-garamond/400.css';
+import '@fontsource/cormorant-garamond/500.css';
+import '@fontsource/cormorant-garamond/300-italic.css';
+import '@fontsource/cormorant-garamond/400-italic.css';
+import '@fontsource-variable/dm-sans/index.css';
 import '../styles/global.css';
+
+const title = `${site.name} Hand-poured sculpted candles`;
 ---
 
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
     <meta name="description" content={site.description} />
+    <meta name="theme-color" content="#ffffff" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={site.description} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <title>{site.name} — handmade candles</title>
   </head>
   <body>
     <Header />
     <main>
       <Hero />
       <Collection />
+      <HowToOrder />
       <OurStory />
       <Contact />
     </main>
     <Footer />
-    <script>
-      const reveals = document.querySelectorAll('.reveal');
-      if ('IntersectionObserver' in window) {
-        const observer = new IntersectionObserver((entries, currentObserver) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add('visible');
-              currentObserver.unobserve(entry.target);
-            }
-          });
-        }, { threshold: 0.12 });
-        reveals.forEach((element) => observer.observe(element));
-      } else {
-        reveals.forEach((element) => element.classList.add('visible'));
-      }
-    </script>
   </body>
 </html>

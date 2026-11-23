@@ -4,22 +4,24 @@ import { collections } from '../data/collections';
 import { whatsappLink } from '../data/site';
 ---
 
-<section class="section" id="collection" aria-labelledby="collection-title">
-  <div class="section-heading center reveal">
-    <p class="eyebrow">the little collection</p>
-    <h2 id="collection-title">little things, <em>made with love.</em></h2>
+<section class="section page" id="candles" aria-labelledby="candles-title">
+  <div class="section-head">
+    <h2 id="candles-title">little things, <em>made with love.</em></h2>
+    <p>Every candle is poured, unmoulded and finished by hand.</p>
   </div>
-  <div class="collection-grid">
-    {collections.map((item, index) => {
-      const inquiry = whatsappLink(`Hello Little Glow, I'm interested in the ${item.name} collection.`);
+  <ul class="candle-grid">
+    {collections.map((item) => {
+      const ask = whatsappLink(`Hello little glow, I'd like to know more about ${item.name}.`);
       return (
-        <article class="collection-item reveal" style={`transition-delay: ${index * 120}ms`}>
-          <div class="collection-image"><Image src={item.image} alt={item.alt} loading="lazy" /></div>
+        <li class="candle">
+          <div class="candle-photo">
+            <Image src={item.image} alt={item.alt} style={`object-position: ${item.focus}`} widths={[400, 640, 900]} sizes="(max-width: 560px) 100vw, (max-width: 860px) 50vw, 33vw" />
+          </div>
           <h3>{item.name}</h3>
           <p>{item.description}</p>
-          {inquiry ? <a class="inquire" href={inquiry} target="_blank" rel="noreferrer">inquire →</a> : <span class="inquire disabled">inquire soon</span>}
-        </article>
+          {ask && <a class="text-link" href={ask} target="_blank" rel="noreferrer">Ask about {item.name}</a>}
+        </li>
       );
     })}
-  </div>
+  </ul>
 </section>
