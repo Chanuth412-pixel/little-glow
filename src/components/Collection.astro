@@ -8,12 +8,12 @@ import { whatsappLink } from '../data/site';
   <h2 id="candles-title" data-reveal>little things, made with love.</h2>
   <ul class="candle-grid">
     {collections.map((item, index) => {
-      const photoDelay = index * 300;
-      const textDelay = { "--delay": (photoDelay + 300) + "ms" };
+      const photoDelay = `calc(${index} * var(--motion-stagger))`;
+      const textDelay = { "--delay": `calc(${index + 1} * var(--motion-stagger))` };
       const ask = whatsappLink("Hello little glow, I'd like to know more about " + item.name + '.');
       const details = (
         <Fragment>
-          <div class="candle-photo" data-reveal="curtain" style={{ "--delay": photoDelay + "ms" }}>
+          <div class="candle-photo" data-reveal="curtain" style={{ "--delay": photoDelay }}>
             <Image src={item.image} alt={item.alt} style={{ "object-position": item.focus }} widths={[400, 640, 900]} sizes="(max-width: 560px) calc(100vw - 36px), (max-width: 860px) calc(100vw - 48px), 33vw" />
           </div>
           <h3 data-reveal style={textDelay}>{item.name}</h3>

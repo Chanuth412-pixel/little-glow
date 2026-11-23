@@ -1,6 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import Flourish from './Flourish.astro';
+import MessageIcon from './MessageIcon.astro';
 import litRose from '../pages/assets/images/hero-teddy.jpg.jpeg';
 import { site, whatsappLink } from '../data/site';
 const order = whatsappLink('Hello little glow, I would like to order a candle.');
@@ -14,7 +15,10 @@ const order = whatsappLink('Hello little glow, I would like to order a candle.')
     </h1>
     <p>{site.description}</p>
     {order
-      ? <a class="button" href={order} target="_blank" rel="noreferrer">Order on WhatsApp</a>
+      ? <a class="button button-message" href={order} target="_blank" rel="noreferrer">
+          <MessageIcon />
+          <span>Order on WhatsApp</span>
+        </a>
       : <a class="button" href="#candles">See the candles</a>}
   </div>
   <div class="hero-photo">

@@ -1,12 +1,14 @@
 ---
 import { site } from '../data/site';
+const baseUrl = import.meta.env.BASE_URL;
+const homeUrl = baseUrl.endsWith('/') ? baseUrl : baseUrl + '/';
 ---
 
 <header class="site-header page">
-  <a class="wordmark" href="/" aria-label="little glow home">{site.name}</a>
-  <nav class="nav" aria-label="Main">
-    <a href="#candles">candles</a>
-    <a href="#story">our story</a>
-    <a href="#contact">contact</a>
+  <a class="wordmark" href={homeUrl} aria-label="little glow home">{site.name}</a>
+  <nav class="nav" aria-label="Main" data-section-nav>
+    <a href="#candles"><span class="nav-label">candles</span></a>
+    <a href="#story"><span class="nav-label">our story</span></a>
+    <a href="#contact"><span class="nav-label">contact</span></a>
   </nav>
 </header>
