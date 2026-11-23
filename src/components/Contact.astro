@@ -3,15 +3,9 @@ import { site, whatsappLink } from '../data/site';
 const whatsapp = whatsappLink('Hello little glow, I would love to find a little glow.');
 ---
 
-<section class="section contact" id="contact" aria-labelledby="contact-title">
-  <div class="page">
-    <h2 id="contact-title">something lovely <em>caught your eye?</em></h2>
-    <p>Message us and we'll help you find a little glow for yourself or someone special.</p>
-    {(whatsapp || site.instagramUrl) && (
-      <div class="contact-actions">
-        {whatsapp && <a class="button" href={whatsapp} target="_blank" rel="noreferrer">Message us on WhatsApp</a>}
-        {site.instagramUrl && <a class="button button-quiet" href={site.instagramUrl} target="_blank" rel="noreferrer">Follow on Instagram</a>}
-      </div>
-    )}
-  </div>
+<section class="section contact page" id="contact" aria-labelledby="contact-title">
+  <h2 id="contact-title">something lovely caught your eye?</h2>
+  <p>Message us and we'll help you find a little glow for yourself or someone special.</p>
+  {whatsapp && <a class="button" href={whatsapp} target="_blank" rel="noreferrer">Message us on WhatsApp</a>}
+  {site.instagramUrl && <p class="contact-more">or find us on <a href={site.instagramUrl} target="_blank" rel="noreferrer">Instagram</a></p>}
 </section>

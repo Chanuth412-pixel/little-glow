@@ -1,16 +1,6 @@
----
-import { Image } from 'astro:assets';
-import peony from '../pages/assets/images/hero-rose.jpg.jpg';
----
-
 <section class="section story" id="story" aria-labelledby="story-title">
-  <div class="story-inner page">
-    <div class="story-photo">
-      <Image src={peony} alt="Pink peony candle on a white marble tray beside a gold wick trimmer" widths={[480, 720, 960]} sizes="(max-width: 860px) 100vw, 45vw" />
-    </div>
-    <div>
-      <h2 id="story-title">made with care,<br /><em>and a little curiosity.</em></h2>
-      <p>Little Glow began with a love for chemistry and beautiful little things. Each candle brings together curiosity, creativity, and careful craftsmanship, thoughtfully hand-poured in small batches.</p>
-    </div>
+  <div class="page">
+    <h2 id="story-title">made with care, and a little curiosity.</h2>
+    <p>Little Glow began with a love for chemistry and beautiful little things.</p>
   </div>
 </section>

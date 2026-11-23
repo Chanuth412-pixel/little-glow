@@ -1,17 +1,16 @@
 ---
+import { Image } from 'astro:assets';
+import peonyImage from './assets/images/hero-rose.jpg.jpg';
 import Header from '../components/Header.astro';
 import Hero from '../components/Hero.astro';
 import Collection from '../components/Collection.astro';
-import HowToOrder from '../components/HowToOrder.astro';
 import OurStory from '../components/OurStory.astro';
 import Contact from '../components/Contact.astro';
 import Footer from '../components/Footer.astro';
 import { site } from '../data/site';
 import '@fontsource/cormorant-garamond/300.css';
 import '@fontsource/cormorant-garamond/400.css';
-import '@fontsource/cormorant-garamond/500.css';
 import '@fontsource/cormorant-garamond/300-italic.css';
-import '@fontsource/cormorant-garamond/400-italic.css';
 import '@fontsource-variable/dm-sans/index.css';
 import '../styles/global.css';
 
@@ -36,9 +35,21 @@ const title = `${site.name} Hand-poured sculpted candles`;
     <main>
       <Hero />
       <Collection />
-      <HowToOrder />
       <OurStory />
       <Contact />
+      <div class="closing page">
+        <blockquote class="closing-quote">
+          <p>?Each candle brings together curiosity, creativity, and careful craftsmanship, thoughtfully hand-poured in small batches.?</p>
+        </blockquote>
+        <Image
+          class="closing-photo"
+          src={peonyImage}
+          alt="Pink peony candle on a white marble tray beside a gold wick trimmer"
+          widths={[400, 520, 780, 1040]}
+          sizes="(max-width: 860px) 100vw, 50vw"
+          loading="lazy"
+        />
+      </div>
     </main>
     <Footer />
   </body>
