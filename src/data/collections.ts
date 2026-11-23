@@ -1,4 +1,4 @@
-import floralImage from '../pages/assets/images/floral-collection.jpg.jpeg';
+import floralImage from '../pages/assets/images/floral-collection.jpg';
 import cuteImage from '../pages/assets/images/cute-collection.jpg.jpeg';
 import giftImage from '../pages/assets/images/gift-collection.jpg.jpeg';
 

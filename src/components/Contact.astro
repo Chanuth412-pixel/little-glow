@@ -1,11 +1,14 @@
 ---
+import Flourish from './Flourish.astro';
 import { site, whatsappLink } from '../data/site';
 const whatsapp = whatsappLink('Hello little glow, I would love to find a little glow.');
 ---
 
-<section class="section contact page" id="contact" aria-labelledby="contact-title">
-  <h2 id="contact-title">something lovely caught your eye?</h2>
-  <p>Message us and we'll help you find a little glow for yourself or someone special.</p>
-  {whatsapp && <a class="button" href={whatsapp} target="_blank" rel="noreferrer">Message us on WhatsApp</a>}
-  {site.instagramUrl && <p class="contact-more">or find us on <a href={site.instagramUrl} target="_blank" rel="noreferrer">Instagram</a></p>}
+<section class="section contact page" id="contact" aria-labelledby="contact-title" data-reveal="group">
+  <h2 id="contact-title" data-reveal>
+    something lovely caught your eye?<Flourish />
+  </h2>
+  <p data-reveal style="--delay: 900ms">Message us and we'll help you find a little glow for yourself or someone special.</p>
+  {whatsapp && <a class="button" data-reveal style="--delay: 1200ms" href={whatsapp} target="_blank" rel="noreferrer">Message us on WhatsApp</a>}
+  {site.instagramUrl && <p class="contact-more" data-reveal style="--delay: 1200ms">or find us on <a href={site.instagramUrl} target="_blank" rel="noreferrer">Instagram</a></p>}
 </section>

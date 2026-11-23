@@ -12,6 +12,10 @@ import '@fontsource/cormorant-garamond/300.css';
 import '@fontsource/cormorant-garamond/400.css';
 import '@fontsource/cormorant-garamond/300-italic.css';
 import '@fontsource-variable/dm-sans/index.css';
+import displayRegular from '@fontsource/cormorant-garamond/files/cormorant-garamond-latin-300-normal.woff2?url';
+import displayItalic from '@fontsource/cormorant-garamond/files/cormorant-garamond-latin-300-italic.woff2?url';
+import wordmarkFont from '@fontsource/cormorant-garamond/files/cormorant-garamond-latin-400-normal.woff2?url';
+import bodyFont from '@fontsource-variable/dm-sans/files/dm-sans-latin-wght-normal.woff2?url';
 import '../styles/global.css';
 
 const title = `${site.name} Hand-poured sculpted candles`;
@@ -22,6 +26,35 @@ const title = `${site.name} Hand-poured sculpted candles`;
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    {[displayRegular, displayItalic, wordmarkFont, bodyFont].map(font => (
+      <link rel="preload" href={font} as="font" type="font/woff2" crossorigin="anonymous" />
+    ))}
+    <script is:inline>
+      document.documentElement.classList.add('js');
+      document.addEventListener('DOMContentLoaded', () => {
+        const targets = document.querySelectorAll('[data-reveal]');
+        if (typeof IntersectionObserver !== 'function') {
+          targets.forEach(target => target.classList.add('is-visible'));
+          return;
+        }
+        const threshold = 0.25;
+        const observer = new IntersectionObserver(entries => {
+          entries.forEach(entry => {
+            if (entry.intersectionRatio < threshold) return;
+            const target = entry.target;
+            target.classList.add('is-visible');
+            if (target.dataset.reveal === 'group') {
+              target.querySelectorAll('[data-reveal]').forEach(child => child.classList.add('is-visible'));
+            }
+            observer.unobserve(target);
+          });
+        }, { threshold });
+        targets.forEach(target => {
+          if (!target.parentElement.closest('[data-reveal="group"]')) observer.observe(target);
+        });
+        document.documentElement.classList.add('reveal-ready');
+      }, { once: true });
+    </script>
     <title>{title}</title>
     <meta name="description" content={site.description} />
     <meta name="theme-color" content="#ffffff" />
@@ -37,18 +70,19 @@ const title = `${site.name} Hand-poured sculpted candles`;
       <Collection />
       <OurStory />
       <Contact />
-      <div class="closing page">
-        <blockquote class="closing-quote">
-          <p>?Each candle brings together curiosity, creativity, and careful craftsmanship, thoughtfully hand-poured in small batches.?</p>
+      <div class="closing page" data-reveal="group">
+        <blockquote class="closing-quote" data-reveal>
+          <p>“Each candle brings together curiosity, creativity, and careful craftsmanship, thoughtfully hand-poured in small batches.”</p>
         </blockquote>
-        <Image
-          class="closing-photo"
-          src={peonyImage}
-          alt="Pink peony candle on a white marble tray beside a gold wick trimmer"
-          widths={[400, 520, 780, 1040]}
-          sizes="(max-width: 860px) 100vw, 50vw"
-          loading="lazy"
-        />
+        <div class="closing-photo" data-reveal="curtain" style="--delay: 300ms">
+          <Image
+            src={peonyImage}
+            alt="Pink peony candle on a white marble tray beside a gold wick trimmer"
+            widths={[400, 520, 780, 1040]}
+            sizes="(max-width: 560px) calc(100vw - 36px), (max-width: 860px) calc(100vw - 48px), 50vw"
+            loading="lazy"
+          />
+        </div>
       </div>
     </main>
     <Footer />

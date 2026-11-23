@@ -1,19 +1,35 @@
 ---
 import { Image } from 'astro:assets';
 import { collections } from '../data/collections';
+import { whatsappLink } from '../data/site';
 ---
 
 <section class="section page" id="candles" aria-labelledby="candles-title">
-  <h2 id="candles-title">little things, made with love.</h2>
+  <h2 id="candles-title" data-reveal>little things, made with love.</h2>
   <ul class="candle-grid">
-    {collections.map((item) => (
-      <li class="candle">
-        <div class="candle-photo">
-          <Image src={item.image} alt={item.alt} style={`object-position: ${item.focus}`} widths={[400, 640, 900]} sizes="(max-width: 860px) 100vw, 33vw" />
-        </div>
-        <h3>{item.name}</h3>
-        <p>{item.description}</p>
-      </li>
-    ))}
+    {collections.map((item, index) => {
+      const photoDelay = index * 300;
+      const textDelay = { "--delay": (photoDelay + 300) + "ms" };
+      const ask = whatsappLink("Hello little glow, I'd like to know more about " + item.name + '.');
+      const details = (
+        <Fragment>
+          <div class="candle-photo" data-reveal="curtain" style={{ "--delay": photoDelay + "ms" }}>
+            <Image src={item.image} alt={item.alt} style={{ "object-position": item.focus }} widths={[400, 640, 900]} sizes="(max-width: 560px) calc(100vw - 36px), (max-width: 860px) calc(100vw - 48px), 33vw" />
+          </div>
+          <h3 data-reveal style={textDelay}>{item.name}</h3>
+          <p data-reveal style={textDelay}>{item.description}</p>
+        </Fragment>
+      );
+      return (
+        <li class="candle" data-reveal="group">
+          {ask ? (
+            <a class="candle-link" href={ask} target="_blank" rel="noreferrer">
+              {details}
+              <span class="text-link" data-reveal style={textDelay}>Ask about {item.name}</span>
+            </a>
+          ) : details}
+        </li>
+      );
+    })}
   </ul>
 </section>

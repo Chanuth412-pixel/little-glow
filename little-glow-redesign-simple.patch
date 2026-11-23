@@ -530,7 +530,7 @@ index f157bd1..ca175cb 100644
 +  <path d="M32 30c2.6 3.4 4.8 5.6 4.8 9a4.8 4.8 0 0 1-9.6 0c0-3.4 2.2-5.6 4.8-9Z" fill="#f3b06a"/>
  </svg>
 diff --git a/src/components/Collection.astro b/src/components/Collection.astro
-index 8855c3c..749eee5 100644
+index 8855c3c..a23cd44 100644
 --- a/src/components/Collection.astro
 +++ b/src/components/Collection.astro
 @@ -1,25 +1,19 @@
@@ -564,7 +564,7 @@ index 8855c3c..749eee5 100644
 +    {collections.map((item) => (
 +      <li class="candle">
 +        <div class="candle-photo">
-+          <Image src={item.image} alt={item.alt} style={`object-position: ${item.focus}`} widths={[400, 640, 900]} sizes="(max-width: 860px) 100vw, 33vw" />
++          <Image src={item.image} alt={item.alt} style={`object-position: ${item.focus}`} widths={[400, 640, 900]} sizes="(max-width: 560px) calc(100vw - 36px), (max-width: 860px) calc(100vw - 48px), 33vw" />
 +        </div>
 +        <h3>{item.name}</h3>
 +        <p>{item.description}</p>
@@ -644,7 +644,7 @@ index 730e811..164bf18 100644
      <a href="#contact">contact</a>
    </nav>
 diff --git a/src/components/Hero.astro b/src/components/Hero.astro
-index f7221ac..7fcd2c4 100644
+index f7221ac..a1dda90 100644
 --- a/src/components/Hero.astro
 +++ b/src/components/Hero.astro
 @@ -1,16 +1,26 @@
@@ -677,7 +677,7 @@ index f7221ac..7fcd2c4 100644
 +      src={litRose}
 +      alt="A pale pink rose candle, lit, glowing from the centre of its petals"
 +      widths={[480, 720, 960, 1200]}
-+      sizes="(max-width: 860px) 100vw, 50vw"
++      sizes="(max-width: 560px) calc(100vw - 36px), (max-width: 860px) calc(100vw - 48px), 50vw"
 +      loading="eager"
 +      fetchpriority="high"
 +    />
@@ -754,7 +754,7 @@ index 6edbd94..6ad43af 100644
    instagramUrl: '',
  } as const;
 diff --git a/src/pages/index.astro b/src/pages/index.astro
-index 32a6783..d59f0e4 100644
+index 32a6783..475da3b 100644
 --- a/src/pages/index.astro
 +++ b/src/pages/index.astro
 @@ -1,4 +1,6 @@
@@ -807,7 +807,7 @@ index 32a6783..d59f0e4 100644
 +          src={peonyImage}
 +          alt="Pink peony candle on a white marble tray beside a gold wick trimmer"
 +          widths={[400, 520, 780, 1040]}
-+          sizes="(max-width: 860px) 100vw, 50vw"
++          sizes="(max-width: 560px) calc(100vw - 36px), (max-width: 860px) calc(100vw - 48px), 50vw"
 +          loading="lazy"
 +        />
 +      </div>
@@ -832,10 +832,10 @@ index 32a6783..d59f0e4 100644
    </body>
  </html>
 diff --git a/src/styles/global.css b/src/styles/global.css
-index f751515..a72cefe 100644
+index f751515..11db206 100644
 --- a/src/styles/global.css
 +++ b/src/styles/global.css
-@@ -1,185 +1,165 @@
+@@ -1,185 +1,186 @@
 -@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400;1,500&family=DM+Sans:wght@400;500&display=swap');
 -
  :root {
@@ -875,7 +875,11 @@ index f751515..a72cefe 100644
 +  font-size: 1.0625rem;
    line-height: 1.65;
 +  -webkit-font-smoothing: antialiased;
-+}
+ }
+-img { display: block; max-width: 100%; }
+-a { color: inherit; text-decoration: none; }
+-a:focus-visible { outline: 1px solid var(--pink); outline-offset: 5px; }
+-
 +
 +img { display: block; max-width: 100%; height: auto; }
 +a { color: inherit; }
@@ -888,14 +892,11 @@ index f751515..a72cefe 100644
 +  line-height: 1;
 +  letter-spacing: -0.01em;
 +  text-wrap: balance;
- }
--img { display: block; max-width: 100%; }
--a { color: inherit; text-decoration: none; }
--a:focus-visible { outline: 1px solid var(--pink); outline-offset: 5px; }
++}
 +p { margin: 0; }
 +
 +.page { width: var(--page); margin-inline: auto; }
- 
++
 +.button {
 +  display: inline-block;
 +  padding: 13px 30px;
@@ -925,7 +926,8 @@ index f751515..a72cefe 100644
 -  font-size: .72rem;
 -  letter-spacing: .16em;
 -  text-transform: lowercase;
--}
++  padding-block: 28px;
+ }
 -.nav a::after, .text-link::after, .inquire::after {
 -  content: '';
 -  position: absolute;
@@ -937,8 +939,7 @@ index f751515..a72cefe 100644
 -  transform: scaleX(0);
 -  transform-origin: right;
 -  transition: transform .35s ease;
-+  padding-block: 28px;
- }
+-}
 -.nav a:hover::after, .nav a:focus-visible::after, .text-link:hover::after,
 -.text-link:focus-visible::after, .inquire:hover::after, .inquire:focus-visible::after {
 -  transform: scaleX(1);
@@ -1067,6 +1068,18 @@ index f751515..a72cefe 100644
 -  letter-spacing: -.02em;
 +  line-height: 1.08;
 +  text-wrap: balance;
++}
++.closing-photo { width: 100%; border-radius: 16px; }
++
++/* footer */
++.site-footer {
++  display: flex;
++  justify-content: space-between;
++  gap: 16px;
++  padding-block: 28px 36px;
++  border-top: 1px solid var(--blush);
++  color: var(--muted);
++  font-size: .95rem;
  }
 -.section-heading h2 em, .story h2 em { color: var(--pink); font-style: italic; }
 -.collection-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(22px, 4vw, 60px); }
@@ -1098,18 +1111,6 @@ index f751515..a72cefe 100644
 -.reveal { opacity: 0; transform: translateY(18px); transition: opacity .7s ease, transform .7s ease; }
 -.reveal.visible { opacity: 1; transform: translateY(0); }
 -@keyframes rise-in { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
-+.closing-photo { width: 100%; border-radius: 16px; }
-+
-+/* footer */
-+.site-footer {
-+  display: flex;
-+  justify-content: space-between;
-+  gap: 16px;
-+  padding-block: 28px 36px;
-+  border-top: 1px solid var(--blush);
-+  color: var(--muted);
-+  font-size: .95rem;
-+}
 +.site-footer .heart { color: var(--pink); }
 +
  @media (prefers-reduced-motion: reduce) {
@@ -1152,7 +1153,28 @@ index f751515..a72cefe 100644
 -  .footer-links { justify-content: flex-start; }
 +
 +@media (max-width: 560px) {
-+  :root { --page: min(1080px, 100% - 36px); }
-+  .site-header { padding-block: 18px; }
-+  .site-footer { flex-direction: column; gap: 4px; }
++  :root { --page: calc(100% - 36px); }
++
++  .site-header { justify-content: center; padding-block: 12px 4px; }
++  .nav { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 4px; }
++  .nav a { justify-content: center; padding-inline: 4px; text-align: center; }
++
++  .hero,
++  .closing { gap: 24px; }
++  .hero { padding-block: 24px 32px; text-align: center; }
++  .hero h1 { font-size: clamp(2.5rem, 10vw, 3.75rem); line-height: 1; }
++  .hero p { margin: 16px auto 20px; font-size: 1rem; }
++  .hero-photo { order: 0; }
++  .button { padding: 12px 24px; }
++
++  .section { padding-block: 44px; }
++  .section h2 { font-size: clamp(2rem, 8vw, 2.75rem); margin-bottom: 24px; }
++  .candle-grid { gap: 28px; }
++  .candle h3 { margin-top: 12px; font-size: 1.65rem; }
++  .story h2,
++  .contact h2 { margin-bottom: 0; }
++  .story p { margin-top: 16px; }
++  .contact p { margin: 14px auto 20px; }
++  .closing-quote { font-size: clamp(1.85rem, 7vw, 2.5rem); text-align: center; }
++  .site-footer { flex-direction: column; gap: 4px; padding-block: 20px 24px; text-align: center; }
  }
