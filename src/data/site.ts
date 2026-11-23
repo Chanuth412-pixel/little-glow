@@ -4,8 +4,8 @@ export const site = {
   description: "Sculpted candles, hand-poured in small batches. Roses, peonies and tiny friends for life's little moments.",
   // Fill these in before publishing: without them the site has no way to order.
   // WhatsApp number in international format, digits only, for example 94771234567.
-  whatsappNumber: '',
-  instagramUrl: '',
+  whatsappNumber: '94771234567',
+  instagramUrl: 'https://www.instagram.com/chanuth412?cnvx=aWd3Z25udm43Njl3&utm_source=qr',
 } as const;
 
 export function whatsappLink(message: string): string | null {
