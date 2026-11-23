@@ -1,0 +1,47 @@
+---
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import Collection from '../components/Collection.astro';
+import OurStory from '../components/OurStory.astro';
+import Contact from '../components/Contact.astro';
+import Footer from '../components/Footer.astro';
+import { site } from '../data/site';
+import '../styles/global.css';
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content={site.description} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{site.name} — handmade candles</title>
+  </head>
+  <body>
+    <Header />
+    <main>
+      <Hero />
+      <Collection />
+      <OurStory />
+      <Contact />
+    </main>
+    <Footer />
+    <script>
+      const reveals = document.querySelectorAll('.reveal');
+      if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver((entries, currentObserver) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+              currentObserver.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.12 });
+        reveals.forEach((element) => observer.observe(element));
+      } else {
+        reveals.forEach((element) => element.classList.add('visible'));
+      }
+    </script>
+  </body>
+</html>

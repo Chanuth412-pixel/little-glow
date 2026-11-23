@@ -1,0 +1,14 @@
+---
+import { site, whatsappLink } from '../data/site';
+const whatsapp = whatsappLink('Hello Little Glow, I would love to find a little glow.');
+---
+
+<section class="section contact reveal" id="contact" aria-labelledby="contact-title">
+  <p class="eyebrow">come say hello</p>
+  <h2 id="contact-title">something lovely caught your eye?</h2>
+  <p>We'd love to help you find a little glow for yourself or someone special.</p>
+  <div class="contact-links">
+    {whatsapp && <a href={whatsapp} target="_blank" rel="noreferrer">WhatsApp</a>}
+    {site.instagramUrl && <a href={site.instagramUrl} target="_blank" rel="noreferrer">Instagram</a>}
+  </div>
+</section>

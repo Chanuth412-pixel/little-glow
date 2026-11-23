@@ -1,0 +1,25 @@
+---
+import { Image } from 'astro:assets';
+import { collections } from '../data/collections';
+import { whatsappLink } from '../data/site';
+---
+
+<section class="section" id="collection" aria-labelledby="collection-title">
+  <div class="section-heading center reveal">
+    <p class="eyebrow">the little collection</p>
+    <h2 id="collection-title">little things, <em>made with love.</em></h2>
+  </div>
+  <div class="collection-grid">
+    {collections.map((item, index) => {
+      const inquiry = whatsappLink(`Hello Little Glow, I'm interested in the ${item.name} collection.`);
+      return (
+        <article class="collection-item reveal" style={`transition-delay: ${index * 120}ms`}>
+          <div class="collection-image"><Image src={item.image} alt={item.alt} loading="lazy" /></div>
+          <h3>{item.name}</h3>
+          <p>{item.description}</p>
+          {inquiry ? <a class="inquire" href={inquiry} target="_blank" rel="noreferrer">inquire →</a> : <span class="inquire disabled">inquire soon</span>}
+        </article>
+      );
+    })}
+  </div>
+</section>
