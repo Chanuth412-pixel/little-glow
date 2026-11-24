@@ -351,6 +351,8 @@ p { margin: 0; text-wrap: pretty; }
     opacity: 0;
     transform: translateY(8px);
   }
+  .js.reveal-ready [data-reveal="fade"].is-visible > img { transition: opacity 500ms var(--motion-ease); }
+  .js.reveal-ready [data-reveal="fade"]:not(.is-visible) > img { opacity: 0; }
   .js.reveal-ready [data-reveal="curtain"] > img { clip-path: inset(0); }
   .js.reveal-ready [data-reveal="curtain"].is-visible > img {
     transition: clip-path calc(var(--motion-curtain) * var(--motion-speed)) var(--motion-ease) calc(var(--delay, 0ms) * var(--motion-speed));
@@ -382,7 +384,7 @@ p { margin: 0; text-wrap: pretty; }
 
   .js.reveal-ready [data-reveal=""]:focus-within,
   .js.reveal-ready .candle-link:focus-visible [data-reveal=""] { opacity: 1; transform: none; transition: none; }
-  .js.reveal-ready .candle-link:focus-visible [data-reveal="curtain"] > img { clip-path: inset(0); transition: none; }
+  .js.reveal-ready .candle-link:focus-visible [data-reveal="fade"] > img { opacity: 1; transition: none; }
 }
 
 @media (prefers-reduced-motion: reduce) {
