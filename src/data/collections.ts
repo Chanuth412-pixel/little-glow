@@ -6,23 +6,23 @@ import giftImage from '../pages/assets/images/gift-collection.jpg.jpeg';
 export const collections = [
   {
     name: 'little blooms',
-    description: 'Peony and rose candles with every petal sculpted in wax.',
+    description: 'Elegant flower-shaped candles in beautiful colours and lovely fragrances.',
     image: floralImage,
     focus: '50% 45%',
-    alt: 'Four peony-shaped candles in peach, pink, cream and lilac on a white tray',
+    alt: 'Flower-shaped candles in pastel colours arranged on a woven tray',
   },
   {
     name: 'little friends',
-    description: 'Bunnies and teddies holding a tiny red heart.',
+    description: 'Adorable animal-shaped candles in soft and playful colours.',
     image: cuteImage,
     focus: '50% 50%',
-    alt: 'Bunny and teddy bear candles, each holding a small red heart',
+    alt: 'Four teddy bear candles in brown, cream, pink and purple',
   },
   {
     name: 'little moments',
-    description: 'Gift-ready boxes for someone special.',
+    description: 'Beautiful candle gift boxes for every special occasion.',
     image: giftImage,
     focus: '50% 58%',
-    alt: 'Gift box of pink roses and peonies with two lit candles',
+    alt: 'Ribbon-tied gift box with pink and cream flowers and two lit candles',
   },
 ] as const;

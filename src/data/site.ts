@@ -1,7 +1,7 @@
 export const site = {
   name: 'little glow.',
-  tagline: 'A little science, a lot of love.',
-  description: "Sculpted candles, hand-poured in small batches. Roses, peonies and tiny friends for life's little moments.",
+  tagline: 'handmade scented candles, made with love.',
+  description: 'Handmade scented candles in beautiful shapes, colours and fragrances. Perfect for your home or as a thoughtful gift.',
   // Fill these in before publishing: without them the site has no way to order.
   // WhatsApp number in international format, digits only, for example 94771234567.
   whatsappNumber: '94771234567',
