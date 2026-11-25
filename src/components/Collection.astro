@@ -7,24 +7,23 @@ import { whatsappLink } from '../data/site';
 <section class="section page" id="candles" aria-labelledby="candles-title">
   <h2 id="candles-title" data-reveal>little things, made with love.</h2>
   <ul class="candle-grid">
-    {collections.map((item, index) => {
-      const textDelay = { "--delay": `calc(${index + 1} * var(--motion-stagger))` };
+    {collections.map((item) => {
       const ask = whatsappLink("Hello little glow, I'd like to know more about " + item.name + '.');
       const details = (
         <Fragment>
-          <div class="candle-photo" data-reveal="fade">
+          <div class="candle-photo" data-photo-reveal>
             <Image src={item.image} alt={item.alt} style={{ "object-position": item.focus }} widths={[400, 640, 900]} sizes="(max-width: 560px) calc(100vw - 36px), (max-width: 860px) calc(100vw - 48px), 33vw" />
           </div>
-          <h3 data-reveal style={textDelay}>{item.name}</h3>
-          <p data-reveal style={textDelay}>{item.description}</p>
+          <h3>{item.name}</h3>
+          <p>{item.description}</p>
         </Fragment>
       );
       return (
-        <li class="candle" data-reveal="group">
+        <li class="candle">
           {ask ? (
             <a class="candle-link" href={ask} target="_blank" rel="noreferrer">
               {details}
-              <span class="text-link" data-reveal style={textDelay}>Ask about {item.name}</span>
+              <span class="text-link">Ask about {item.name}</span>
             </a>
           ) : details}
         </li>
@@ -32,3 +31,22 @@ import { whatsappLink } from '../data/site';
     })}
   </ul>
 </section>
+
+<script>
+  if (typeof IntersectionObserver === 'function') {
+    const visibleRatio = 0.2;
+    const observer = new IntersectionObserver(entries => {
+      for (const { target, intersectionRatio } of entries) {
+        if (intersectionRatio < visibleRatio) continue;
+
+        target.setAttribute('data-photo-reveal', 'visible');
+        observer.unobserve(target);
+      }
+    }, { threshold: visibleRatio });
+
+    document.querySelectorAll('[data-photo-reveal]').forEach(photo => {
+      photo.setAttribute('data-photo-reveal', 'pending');
+      observer.observe(photo);
+    });
+  }
+</script>
